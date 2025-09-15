@@ -1,0 +1,49 @@
+{
+    "name": "kosmosafive/bitrix-ds",
+    "description": "Структуры данных",
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/kosmosafive/bitrix-ds",
+    "type": "library",
+    "minimum-stability": "stable",
+    "keywords": [
+        "bitrix",
+        "kosmos",
+        "ds",
+        "data",
+        "structure",
+        "collection",
+        "request"
+    ],
+    "authors": [
+        {
+            "name": "Siarhei Buinevich",
+            "email": "a5-kosmos@yandex.ru",
+            "homepage": "https://t.me/kosmosafive",
+            "role": "Author"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "kosmosafive/bitrix-localization": "^2.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "phpstan/phpstan": "^2.1",
+        "rector/rector": "^2.1",
+        "lendable/composer-license-checker": "^1.2",
+        "shipmonk/composer-dependency-analyser": "^1.8",
+        "friendsofphp/php-cs-fixer": "^3.86"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kosmosafive\\Bitrix\\DS\\": "src/"
+        }
+    },
+    "scripts": {
+      "analyse": "vendor/bin/phpstan analyse -c phpstan.neon --ansi",
+      "rector:dry-run": "vendor/bin/rector process --config rector.php --dry-run --clear-cache --ansi",
+      "rector:process": "vendor/bin/rector process --config rector.php --clear-cache --ansi",
+      "license:check": "vendor/bin/composer-license-checker --allow-file .allowed-licenses.php --ansi",
+      "dependency:check": "vendor/bin/composer-dependency-analyser --config composer-dependency-analyser.php"
+    }
+}
