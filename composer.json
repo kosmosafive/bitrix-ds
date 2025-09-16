@@ -7,7 +7,6 @@
     "minimum-stability": "stable",
     "keywords": [
         "bitrix",
-        "kosmos",
         "ds",
         "data",
         "structure",
@@ -24,7 +23,8 @@
     ],
     "require": {
         "php": "^8.3",
-        "kosmosafive/bitrix-localization": "^2.0"
+        "kosmosafive/bitrix-localization": "^2.0",
+        "ramsey/uuid": "^4.9"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
