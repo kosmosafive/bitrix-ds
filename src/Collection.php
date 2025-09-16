@@ -225,21 +225,21 @@ abstract class Collection implements ArrayAccess, Iterator, Countable
         $this->values = [];
     }
 
-    /**
-     * Добавляет элемент в конец коллекции.
-     *
+    /**     *
      * @param T $value
-     * @return void
+     *
+     * @return Collection
      */
-    public function add(mixed $value): void
+    public function add(mixed $value): Collection
     {
         $this->values[] = $value;
+
+        return $this;
     }
 
     /**
-     * Возвращает первый элемент, удовлетворяющий условию.
-     *
      * @param Closure(T, int|string|null): bool $closure
+     *
      * @return T|null
      */
     public function find(Closure $closure): mixed
