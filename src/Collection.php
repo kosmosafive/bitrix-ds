@@ -23,7 +23,7 @@ abstract class Collection implements ArrayAccess, Iterator, Countable
     /**
      * @var array<int|string, T>
      */
-    protected array $values;
+    protected array $values = [];
 
     public function __construct(mixed ...$values)
     {
