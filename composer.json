@@ -29,10 +29,10 @@
     "require-dev": {
         "roave/security-advisories": "dev-latest",
         "phpstan/phpstan": "^2.1",
-        "rector/rector": "^2.1",
+        "rector/rector": "^2.2",
         "lendable/composer-license-checker": "^1.2",
         "shipmonk/composer-dependency-analyser": "^1.8",
-        "friendsofphp/php-cs-fixer": "^3.86"
+        "friendsofphp/php-cs-fixer": "^3.88"
     },
     "autoload": {
         "psr-4": {
