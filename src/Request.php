@@ -22,6 +22,10 @@ abstract readonly class Request
         $filteredValue = strip_tags($value);
         $flags = ($saveBreaks) ? FILTER_NULL_ON_FAILURE : FILTER_NULL_ON_FAILURE | FILTER_FLAG_STRIP_LOW;
         $filteredValue = filter_var($filteredValue, FILTER_SANITIZE_FULL_SPECIAL_CHARS, ['flags' => $flags]);
+        if (!$filteredValue) {
+            return $filteredValue;
+        }
+
         $regex = '/[^\p{Cyrillic}\p{Latin}\p{Common}]/u';
         $filteredValue = preg_replace($regex, '', $filteredValue);
         return trim($filteredValue);
