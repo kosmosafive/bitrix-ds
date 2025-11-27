@@ -9,6 +9,7 @@ use Bitrix\Main\Result;
 use Kosmosafive\Bitrix\DS\Request\Attribute\Required;
 use Kosmosafive\Bitrix\Localization\Loc;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use ReflectionClass;
 
 abstract readonly class Request
@@ -76,6 +77,12 @@ abstract readonly class Request
     {
         $value = (string) $value;
         return Uuid::isValid($value) ? $value : null;
+    }
+
+    public function filterUuidAsUuid($value): ?UuidInterface
+    {
+        $value = (string) $value;
+        return Uuid::isValid($value) ? Uuid::fromString($value) : null;
     }
 
     public function validate(): Result
