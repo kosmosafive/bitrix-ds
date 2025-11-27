@@ -19,6 +19,8 @@ abstract readonly class Request
             return null;
         }
 
+        $value = (string) $value;
+
         $filteredValue = strip_tags($value);
         $flags = ($saveBreaks) ? FILTER_NULL_ON_FAILURE : FILTER_NULL_ON_FAILURE | FILTER_FLAG_STRIP_LOW;
         $filteredValue = filter_var($filteredValue, FILTER_SANITIZE_FULL_SPECIAL_CHARS, ['flags' => $flags]);
@@ -33,6 +35,7 @@ abstract readonly class Request
 
     public function filterEmail($value): ?string
     {
+        $value = (string) $value;
         return check_email($value, true) ? mb_strtolower(trim($value)) : null;
     }
 
