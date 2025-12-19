@@ -13,6 +13,7 @@ use Kosmosafive\Bitrix\Localization\Loc;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use ReflectionClass;
+use Throwable;
 
 abstract readonly class Request
 {
@@ -116,6 +117,20 @@ abstract readonly class Request
         }
 
         return ($date->format($format) === $value) ? $date : null;
+    }
+
+    public function filterDateTimeByInterval($value): ?Type\DateTime
+    {
+        $value = trim((string) $value);
+        if (empty($value)) {
+            return null;
+        }
+
+        try {
+            return (new Type\DateTime())->add($value);
+        } catch (Throwable) {
+            return null;
+        }
     }
 
     public function validate(): Result
