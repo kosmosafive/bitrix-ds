@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Kosmosafive\Bitrix\DS;
 
 use Bitrix\Main\Error;
+use Bitrix\Main\ObjectException;
 use Bitrix\Main\Result;
+use Bitrix\Main\Type;
 use Kosmosafive\Bitrix\DS\Request\Attribute\Required;
 use Kosmosafive\Bitrix\Localization\Loc;
 use Ramsey\Uuid\Uuid;
@@ -83,6 +85,37 @@ abstract readonly class Request
     {
         $value = (string) $value;
         return Uuid::isValid($value) ? Uuid::fromString($value) : null;
+    }
+
+    public function filterDate($value, string $format = 'Y-m-d'): ?Type\Date
+    {
+        $value = trim((string) $value);
+        if (empty($value)) {
+            return null;
+        }
+
+        try {
+            $date = new Type\Date((string) $value, $format);
+        } catch (ObjectException) {
+            return null;
+        }
+
+        return ($date->format($format) === $value) ? $date : null;
+    }
+
+    public function filterDateTime($value, string $format = 'Y-m-d H:i:s'): ?Type\DateTime
+    {
+        $value = trim((string) $value);
+        if (empty($value)) {
+            return null;
+        }
+
+        $date = Type\DateTime::tryParse((string) $value, $format);
+        if (!$date) {
+            return null;
+        }
+
+        return ($date->format($format) === $value) ? $date : null;
     }
 
     public function validate(): Result

@@ -40,7 +40,9 @@ class EntityCollection extends Collection
 
 ## Request
 
-Используется для фильтрации и валидации данные от клиента.
+Используется для фильтрации и валидации данных от клиента.
+
+Для валидации можно использовать внешний сервис.
 
 ```php
 use Kosmosafive\Bitrix\DS\Request;
